@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Registrace{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+    <form method='post'>
+        <label for="name">Jméno</label><label for="surname">Příjmení</label>
+        <input name="name" id="name" required><input name="surname" id="surname" required>
+        <label for="email">Email</label><label for="tel">Telefon</label>
+        <input name="email" id="email" required><input name="tel" id="tel" required>
+        <label for="street_descriptive">Ulice a číslo popisné</label><label for="city">Město</label>
+        <input name="street_descriptive" id="street_descriptive" required><input name="city" id="city" required>
+        <label for="zip_code">PSČ</label><label for="password">Heslo</label>
+        <input name="zip_code" id="zip_code" required><input type="password" name="password" id="password" required>
+        <input type="submit" value="registrovat">
+    </form>
+{% endblock content %}

@@ -1,0 +1,24 @@
+Čus vole tady musíš udělat eště hodně práce !!!!
+
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1> {% block title %}Seznam pojištěnců{% endblock title %}
+{% endblock header %}
+
+{% block content %}
+        {% for post in posts  %}
+            <table border="1">
+                <tr>
+                    <td>{{ post['name'] }}</td>
+                    <td>{{ post['surname'] }}</td>
+                    <td>{{ post['email'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ post['name'] }}</td>
+                    <td>{{ post['surname'] }}</td>
+                    <td>{{ post['email'] }}</td>
+                </tr>
+            </table>
+        {% endfor %}
+{% endblock content %}

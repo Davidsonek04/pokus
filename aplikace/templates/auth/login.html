@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Přihlášení{% endblock title %}
+{% endblock header %}
+
+{% block content %}
+        <form method="POST">
+            <label for="email">Email</label>
+            <input name="email" id="email" required>
+            <label for="password">heslo</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="přihlásit">
+        </form>
+{% endblock content %}
