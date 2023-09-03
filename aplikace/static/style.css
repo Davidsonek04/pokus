@@ -7,7 +7,7 @@ html
 
 body 
 { 
-    max-width: 550px; margin: 0 auto; 
+    max-width: 850px; margin: 0 auto; 
     background: white; 
     box-shadow: 3px 3px 6px gray;
     border-radius: 15px;
@@ -16,13 +16,13 @@ body
 h1 
 { 
     font-family: serif; 
-    color: #377ba8; 
+    color: #4e994e; 
     margin: 1rem 0; 
 }
 
 a 
 { 
-    color: #377ba8;
+    color: #1067a1;
     text-decoration: none;
 }
 
