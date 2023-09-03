@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1> {% block title %}Výpis pojištění </h1><a href="{{ url_for('extract.list') }}">Zpět na výpis pojištěnců</a>{% endblock title %}
+{% endblock header %}
+
+{% block content %}
+{% if g.user['name'] == 'David' %}
+        <a href="{{ url_for('new_insurance.create_insurance') }}">Nové pojištění</a>
+            <input type="hidden" name="users_id" value="{{ user_name['id'] }}">
+{% endif %}
+    
+        <table  border="1" style="border-collapse: collapse">
+            <thead>
+                <tr>
+                    <th>{{ user_name['name'] }}</th>
+                    <th>{{ user_name['surname'] }}</th>
+                    <th>{{ user_name['email'] }}</th>
+                    
+                </tr>
+            </thead>
+            
+            {% for post in posts %}
+            
+            <table  border="1" style="border-collapse: collapse">
+                <tr >
+                    <td>{{ post['insurance'] }}</td>
+                    <td>{{ post['amound'] }} - Kč</td>
+                    <td>{{ post['subject'] }}</td>
+                    <td>{{ post['valid_from'] }}</td>
+                    <td>{{ post['valid_until'] }}</td>
+                    
+                </tr>
+            </table>
+        </table>
+        {% endfor %}
+{% endblock content %}

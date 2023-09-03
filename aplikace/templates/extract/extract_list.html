@@ -7,18 +7,33 @@
 {% endblock header %}
 
 {% block content %}
-        {% for post in posts  %}
-            <table border="1">
+{% if g.user['name'] == 'David' %}
+        <a href="{{ url_for('create.create') }}">Nový pojištěnec</a>
+{% endif %}
+
+        <table  border="1" style="border-collapse: collapse">
+            <thead>
                 <tr>
-                    <td>{{ post['name'] }}</td>
-                    <td>{{ post['surname'] }}</td>
-                    <td>{{ post['email'] }}</td>
+                    <th>Jmeno</th>
+                    <th>Příjmení</th>
+                    <th>Email</th>
                 </tr>
-                <tr>
+            </thead>
+            {% for post in posts %}
+            
+            <table  border="1" style="border-collapse: collapse">
+                <tr >
                     <td>{{ post['name'] }}</td>
                     <td>{{ post['surname'] }}</td>
                     <td>{{ post['email'] }}</td>
+                    <td><form method="post" action="{{ url_for('insurance.list_insurance') }}">
+                        <input type="hidden" name="user_mail" value="{{ post['email'] }}">
+                        <input type="hidden" name="id" value="{{ post['id'] }}">
+                            <button type="submit">Pojištění</button>
+                        </form>
+                    </td>
                 </tr>
             </table>
+        </table>
         {% endfor %}
 {% endblock content %}

@@ -18,7 +18,7 @@ def login():
         db = get_db()
         error = None
         user = db.execute(
-            'SELECT * FROM users WHERE email = ?', (email,)
+            'SELECT * FROM administration WHERE email = ?', (email,)
         ).fetchone()
 
         if user is None or not check_password_hash(user['password'], password):
@@ -29,7 +29,7 @@ def login():
             session['email'] = user['email']
             if user['name'] == 'David':
                 return redirect(url_for('extract.list'))    # TODO vytvořit extract.list
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('extract.list_one'))
         flash(error)
 
     return render_template('auth/login.html')
@@ -50,15 +50,15 @@ def load_logged_in_user():
     """
     Purpose: 
     """
-    user_id = session.get('name')
+    user_id = session.get('email')
 
     if user_id is None:
         g.user = None
     else:
         g.user = get_db().execute(
-            'SELECT * FROM user WHERE name = ?', (user_id,)
+            'SELECT * FROM administration WHERE email = ?', (user_id,)
         ).fetchone()
-    return g.user
+    
 # end def
 
 def login_required(viev):

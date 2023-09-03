@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Uživatelé{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+    <form method='post'>
+        <label for="name">Jméno</label><input name="name" id="name" required>
+        <label for="surname">Příjmení</label><input name="surname" id="surname" required>
+        <label for="email">Email</label><input name="email" id="email" required>
+        <label for="password">Heslo</label><input type="password" name="password" id="password" required>
+        <input type="submit" value="registrovat">
+    </form>
+{% endblock content %}
