@@ -141,7 +141,11 @@ nav ul li a, nav ul li span, header .action
 
 .content input, .content textarea 
 { 
-    margin-bottom: 1em; 
+    margin-bottom: 1em;
+    min-width: 10em;
+    max-width: 20em;
+    border-radius: 5px;
+    height: 20px;
 }
 
 .content textarea 
@@ -159,4 +163,19 @@ input[type=submit]
 { 
     align-self: start; 
     min-width: 10em; 
+}
+
+input[type=button]
+{
+    align-self: start; 
+    min-width: 10em; 
+}
+
+
+
+table td, th
+{
+    border: solid 1px;
+    width: 10em;
+    border-collapse: collapse;
 }

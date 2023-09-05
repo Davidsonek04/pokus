@@ -6,13 +6,13 @@
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-        <a href="{{ url_for('new_insurance.create_insurance') }}">Nové pojištění</a>
+        <a href="{{ url_for('insurance.create_insurance') }}">Nové pojištění</a>
             <input type="hidden" name="users_id" value="{{ user_name['id'] }}">
 {% endif %}
     
-        <table  border="1" style="border-collapse: collapse">
+        <table class="tabulka">
             <thead>
-                <tr>
+                <tr class="radky">
                     <th>{{ user_name['name'] }}</th>
                     <th>{{ user_name['surname'] }}</th>
                     <th>{{ user_name['email'] }}</th>
@@ -22,8 +22,8 @@
             
             {% for post in posts %}
             
-            <table  border="1" style="border-collapse: collapse">
-                <tr >
+            <table  class="tabulka">
+                <tr class="radky">
                     <td>{{ post['insurance'] }}</td>
                     <td>{{ post['amound'] }} - Kč</td>
                     <td>{{ post['subject'] }}</td>

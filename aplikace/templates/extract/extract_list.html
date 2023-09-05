@@ -11,7 +11,7 @@
         <a href="{{ url_for('create.create') }}">Nový pojištěnec</a>
 {% endif %}
 
-        <table  border="1" style="border-collapse: collapse">
+        <table  >
             <thead>
                 <tr>
                     <th>Jmeno</th>
@@ -21,7 +21,7 @@
             </thead>
             {% for post in posts %}
             
-            <table  border="1" style="border-collapse: collapse">
+            <table  >
                 <tr >
                     <td>{{ post['name'] }}</td>
                     <td>{{ post['surname'] }}</td>
