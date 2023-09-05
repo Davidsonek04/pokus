@@ -19,36 +19,26 @@ def list_insurance():
 
     u_id = user_name['id']
 
-    # if email == 'David':
-    #     posts = db.execute(
-    #         'SELECT * FROM insurance AS i '
-    #         'JOIN users AS u ON u.id = i.user_id '
-    #         'WHERE u.id = ?', (u_id,)            
-    #     ).fetchall()
-
     posts = db.execute(
         'SELECT * FROM insurance AS i '
         'JOIN users AS u ON u.id = i.user_id '
         'WHERE u.id = ?', (u_id,)
     ).fetchall()
 
+    flash(u_id)
     return render_template('insurance_list.html', posts=posts, user_name=user_name)
 
-@bp.route('/new_insurance', methods=('GET', 'POST'))
+@bp.route('/create_insurance', methods=('GET', 'POST'))
 def create_insurance():
         
-    # user_id = request.form.get('users_id')
-    # if user_id is not None:
-    #     return render_template(user_id=user_id)
-    # user_id = 1
-            
+
     if request.method == 'POST':
         insurance = request.form['insurance']
         amound = request.form['amound']
         subject = request.form['subject']
         valid_from = request.form['valid_from']
         valid_until = request.form['valid_until']
-        user_id = request.form.get('users_id')
+        user_id = request.form['user_id']
         
         db = get_db()
         error = None
@@ -70,6 +60,7 @@ def create_insurance():
                     (insurance, amound, subject, valid_from, valid_until, user_id),
                 )
             db.commit()
+            error = "Pojištění bylo vytvořeno."
             return redirect(url_for('insurance.list_insurance'))
         flash(error)
     return render_template('create_insurance.html')

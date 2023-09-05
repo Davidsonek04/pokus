@@ -6,8 +6,13 @@
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
+        {% set user_id = user_name['id'] %}  
+        <form method='post' action="{{ url_for('insurance.create_insurance') }}">
+        <input type='hidden' name='user_id' value="{{ user_id }}">
+        </form>
         <a href="{{ url_for('insurance.create_insurance') }}">Nové pojištění</a>
-            <input type="hidden" name="users_id" value="{{ user_name['id'] }}">
+        
+          
 {% endif %}
     
         <table class="tabulka">
@@ -16,6 +21,7 @@
                     <th>{{ user_name['name'] }}</th>
                     <th>{{ user_name['surname'] }}</th>
                     <th>{{ user_name['email'] }}</th>
+                    <th>{{ user_name['id'] }}</th>
                     
                 </tr>
             </thead>

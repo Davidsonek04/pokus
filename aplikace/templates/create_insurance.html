@@ -13,5 +13,7 @@
         <label for="valid_until">platnost_do</label><input name="valid_until" id="valid_until" required>
         
         <input type="submit" value="přidat"><input type="button" value="Zpět" onclick="window.history.back()">
+    
+        <input type='hidden' name='user_id' value="{{ user_id }}">
     </form>
 {% endblock content %}

@@ -35,6 +35,7 @@ def create():
                     (email, name, surname, tel, street_descriptive, city, zip_code),
                 )
                 db.commit()
+                error = "Pojištěnec byl uložen."
                 return redirect(url_for('extract.list'))
         flash(error)
     return render_template('create.html')
