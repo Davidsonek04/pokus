@@ -11,7 +11,7 @@
         <a href="{{ url_for('create.create') }}">Nový pojištěnec</a>
 {% endif %}
 
-        <table  >
+        <table>
             <thead>
                 <tr>
                     <th>Jmeno</th>
@@ -19,16 +19,16 @@
                     <th>Email</th>
                 </tr>
             </thead>
-            {% for post in posts %}
-            
-            <table  >
+            {% for user in users %}
+
+            <table>
                 <tr >
-                    <td>{{ post['name'] }}</td>
-                    <td>{{ post['surname'] }}</td>
-                    <td>{{ post['email'] }}</td>
-                    <td><form method="post" action="{{ url_for('insurance.list_insurance') }}">
-                        <input type="hidden" name="user_mail" value="{{ post['email'] }}">
-                        <input type="hidden" name="id" value="{{ post['id'] }}">
+                    <td>{{ user['name'] }}</td>
+                    <td>{{ user['surname'] }}</td>
+                    <td>{{ user['email'] }}</td>
+                    <td><form method="post" action="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">
+                        <input type="hidden" name="user_mail" value="{{ user['email'] }}">
+                        <input type="hidden" name="id" value="{{ user['id'] }}">
                             <button type="submit">Pojištění</button>
                         </form>
                     </td>

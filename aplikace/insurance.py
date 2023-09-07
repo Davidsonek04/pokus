@@ -3,34 +3,27 @@ from aplikace.db import get_db
 
 bp = Blueprint('insurance', __name__)
 
-@bp.route('/insurance', methods=('GET', 'POST'))
-def list_insurance():
+@bp.route('/insurance/<user_id>', methods=('GET', 'POST'))
+def list_insurance(user_id):
     """_summary_
     """
     db = get_db()
-    
-    u_mail = request.form.get('user_mail')
-    #u_id = request.form.get('id')
-    #email = session.get('name')
-    
-    user_name = db.execute(
-        'SELECT name, surname, email, id FROM users WHERE email = ?', (u_mail,)
-    ).fetchone()
 
-    u_id = user_name['id']
+    user = db.execute(
+        'SELECT name, surname, email, id FROM users WHERE id = ?', (user_id,)
+    ).fetchone()
 
     posts = db.execute(
         'SELECT * FROM insurance AS i '
         'JOIN users AS u ON u.id = i.user_id '
-        'WHERE u.id = ?', (u_id,)
+        'WHERE u.id = ?', (user_id,)
     ).fetchall()
 
-    flash(u_id)
-    return render_template('insurance_list.html', posts=posts, user_name=user_name)
+    flash(user_id)
+    return render_template('insurance_list.html', posts=posts, user_name=user)
 
-@bp.route('/create_insurance', methods=('GET', 'POST'))
-def create_insurance():
-        
+@bp.route('/create_insurance/<user_id>', methods=('GET', 'POST'))
+def create_insurance(user_id):
 
     if request.method == 'POST':
         insurance = request.form['insurance']
@@ -39,28 +32,28 @@ def create_insurance():
         valid_from = request.form['valid_from']
         valid_until = request.form['valid_until']
         user_id = request.form['user_id']
-        
+
         db = get_db()
         error = None
-        
+
         if (not insurance) or (not amound) or (not subject) or (not valid_from) or (not valid_until):
             error = 'Všechny poíčka jsou povinné!!'
-            
+
         test = db.execute(
-            'SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,) 
+            'SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,)
             ).fetchone()
-        
+
         if test is not None:
             error = "Pojištění je již sjednáno!"
-            
+
         if error is None:
-            
+
             db.execute(
                     'INSERT INTO insurance (insurance, amound, subject, valid_from, valid_until, user_id) VALUES (?, ?, ?, ?, ?, ?)',
                     (insurance, amound, subject, valid_from, valid_until, user_id),
                 )
             db.commit()
             error = "Pojištění bylo vytvořeno."
-            return redirect(url_for('insurance.list_insurance'))
+            return redirect(url_for('insurance.list_insurance', user_id = user_id))
         flash(error)
-    return render_template('create_insurance.html')
+    return render_template('create_insurance.html', user_id = user_id)

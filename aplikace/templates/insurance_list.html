@@ -6,15 +6,17 @@
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-        {% set user_id = user_name['id'] %}  
-        <form method='post' action="{{ url_for('insurance.create_insurance') }}">
-        <input type='hidden' name='user_id' value="{{ user_id }}">
+        {% set user_id = user_name['id'] %}
+        <div>{{url_for('insurance.create_insurance',user_id=user_id)}}</div>
+        <div>{{user_id}}</div>
+        <form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
+        <input type='text' id='user_id' name='user_id' value="{{ user_name['id'] }}">
         </form>
-        <a href="{{ url_for('insurance.create_insurance') }}">Nové pojištění</a>
-        
-          
+        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+
+
 {% endif %}
-    
+
         <table class="tabulka">
             <thead>
                 <tr class="radky">
@@ -22,12 +24,12 @@
                     <th>{{ user_name['surname'] }}</th>
                     <th>{{ user_name['email'] }}</th>
                     <th>{{ user_name['id'] }}</th>
-                    
+
                 </tr>
             </thead>
-            
+
             {% for post in posts %}
-            
+
             <table  class="tabulka">
                 <tr class="radky">
                     <td>{{ post['insurance'] }}</td>
@@ -35,7 +37,7 @@
                     <td>{{ post['subject'] }}</td>
                     <td>{{ post['valid_from'] }}</td>
                     <td>{{ post['valid_until'] }}</td>
-                    
+
                 </tr>
             </table>
         </table>

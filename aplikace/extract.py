@@ -13,20 +13,20 @@ def list():
     _summary_ : Po přihlášení uživatele jako admina!!
     """
     db = get_db()
-    posts = db.execute(
-        'SELECT name, surname, email FROM users'
+    users = db.execute(
+        'SELECT * FROM users'
     ).fetchall()
-    return render_template('extract/extract_list.html', posts=posts)
+    return render_template('extract/extract_list.html', users=users)
 
 @bp.route('/list_one', methods=('GET', 'POST'))
 def list_one():
     """_summary_ : Po přihlášení uživatele jako pojištěnca!!!
     """
 
-    
+
     email = session.get('email')
     db = get_db()
-    posts = db.execute(
+    users = db.execute(
         'SELECT name, surname, email, id FROM users WHERE email = ?', (email,)
     )
-    return render_template('extract/extract_list.html', posts=posts)
+    return render_template('extract/extract_list.html', users=users)
