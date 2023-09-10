@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Výpis pojištění </h1><a href="{{ url_for('extract.list') }}">Zpět na výpis pojištěnců</a>{% endblock title %}
+    <h1> {% block title %}Výpis pojištění {% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
@@ -10,6 +10,7 @@
         <form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
         </form>
         <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        <a href="{{ url_for('extract.list') }}">Zpět na výpis pojištěnců</a>
 {% endif %}
 
         <table class="tabulka">
@@ -36,5 +37,6 @@
                 </tr>
             </table>
         </table>
+
         {% endfor %}
 {% endblock content %}
