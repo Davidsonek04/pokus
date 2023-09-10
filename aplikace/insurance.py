@@ -38,7 +38,7 @@ def create_insurance():
         subject = request.form['subject']
         valid_from = request.form['valid_from']
         valid_until = request.form['valid_until']
-        user_id = request.form['user_id']
+        user_id = request.form.get('user_id')
         
         db = get_db()
         error = None

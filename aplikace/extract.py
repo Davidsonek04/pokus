@@ -14,7 +14,7 @@ def list():
     """
     db = get_db()
     posts = db.execute(
-        'SELECT name, surname, email FROM users'
+        'SELECT name, surname, email, id FROM users'
     ).fetchall()
     return render_template('extract/extract_list.html', posts=posts)
 

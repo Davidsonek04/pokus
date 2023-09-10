@@ -2,9 +2,11 @@
 
 {% block header %}
     <h1>{% block title %}Nové pojištění </h1>{% endblock title %}
+    
 {% endblock header %}
 
 {% block content %}
+
     <form method='post'>
         <label for="insurance">Typ pojištění</label><input name="insurance" id="insurance" required>
         <label for="amound">Částka</label><input name="amound" id="amound" required>
@@ -13,7 +15,7 @@
         <label for="valid_until">platnost_do</label><input name="valid_until" id="valid_until" required>
         
         <input type="submit" value="přidat"><input type="button" value="Zpět" onclick="window.history.back()">
-    
-        <input type='hidden' name='user_id' value="{{ user_id }}">
+        
+        <input type='hidden' name='user_id' value="{{ a }}">
     </form>
 {% endblock content %}

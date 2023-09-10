@@ -26,7 +26,8 @@
                     <td>{{ post['name'] }}</td>
                     <td>{{ post['surname'] }}</td>
                     <td>{{ post['email'] }}</td>
-                    <td><form method="post" action="{{ url_for('insurance.list_insurance') }}">
+                    <td>{{ post['id'] }}</td>
+                    <td><form method="post" action="{{ url_for('insurance.list_insurance', post=post) }}">
                         <input type="hidden" name="user_mail" value="{{ post['email'] }}">
                         <input type="hidden" name="id" value="{{ post['id'] }}">
                             <button type="submit">Pojištění</button>
