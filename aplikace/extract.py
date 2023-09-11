@@ -18,15 +18,16 @@ def list():
     ).fetchall()
     return render_template('extract/extract_list.html', users=users)
 
-@bp.route('/list_one', methods=('GET', 'POST'))
-def list_one():
-    """_summary_ : Po přihlášení uživatele jako pojištěnca!!!
-    """
+# TODO Připraveno na admin / user 
+# @bp.route('/list_one', methods=('GET', 'POST'))
+# def list_one():
+#     """_summary_ : Po přihlášení uživatele jako pojištěnca!!!
+#     """
 
 
-    email = session.get('email')
-    db = get_db()
-    users = db.execute(
-        'SELECT name, surname, email, id FROM users WHERE email = ?', (email,)
-    )
-    return render_template('extract/extract_list.html', users=users)
+#     email = session.get('email')
+#     db = get_db()
+#     users = db.execute(
+#         'SELECT name, surname, email, id FROM users WHERE email = ?', (email,)
+#     )
+#     return render_template('extract/extract_list.html', users=users)

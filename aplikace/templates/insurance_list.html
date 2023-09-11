@@ -6,13 +6,13 @@
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-{% set user_id = user_name['id'] %}
-<div>{{url_for('insurance.create_insurance',user_id=user_id)}}</div>
-<div>{{user_id}}</div>
-<form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
-<input type='text' id='user_id' name='user_id' value="{{ user_name['id'] }}">
-</form>
-<a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        {% set user_id = user_name['id'] %}
+        
+        <form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
+        <input type='hidden' id='user_id' name='user_id' value="{{ user_name['id'] }}">
+        </form>
+        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        <a href="{{url_for('extract.list')}}">Pojištěnci</a>
 {% endif %}
 
         <table class="tabulka">
