@@ -3,11 +3,12 @@ from flask import Blueprint, flash, g, redirect, session, render_template, reque
 from werkzeug.exceptions import abort
 from aplikace.auth import login_required
 from aplikace.db import get_db
-
+import functools
 
 bp = Blueprint('extract', __name__)
 
 @bp.route('/list', methods=('GET', 'POST'))
+@login_required
 def list():
     """
     _summary_ : Po přihlášení uživatele jako admina!!

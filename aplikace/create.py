@@ -2,10 +2,12 @@ import functools
 from flask import Blueprint, flash, g, render_template, redirect, request, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from aplikace.db import get_db
+from aplikace.auth import login_required
 
 bp = Blueprint('create', __name__)
 
 @bp.route('/create', methods=('GET', 'POST'))
+@login_required
 def create():
     if request.method == 'POST':
         name = request.form['name']

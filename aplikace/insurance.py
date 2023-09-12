@@ -1,9 +1,13 @@
 from flask import Blueprint, session, g, render_template, request, url_for, redirect, flash
 from aplikace.db import get_db
+from aplikace.auth import login_required
+import functools
+
 
 bp = Blueprint('insurance', __name__)
 
 @bp.route('/insurance/<user_id>', methods=('GET', 'POST'))
+@login_required
 def list_insurance(user_id):
     """_summary_
     """
@@ -23,6 +27,7 @@ def list_insurance(user_id):
     return render_template('insurance_list.html', posts=posts, user_name=user)
 
 @bp.route('/create_insurance/<user_id>', methods=('GET', 'POST'))
+@login_required
 def create_insurance(user_id):
 
     if request.method == 'POST':

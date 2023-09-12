@@ -1,10 +1,13 @@
 
 from flask import Blueprint, flash, g, render_template, redirect, request, url_for
 from aplikace.db import get_db
+import functools
+from aplikace.auth import login_required
 
 bp = Blueprint('new_insurance', __name__)
 
 @bp.route('/new_insurance', methods=('GET', 'POST'))
+@login_required
 def create_insurance():
         
 
@@ -39,3 +42,16 @@ def create_insurance():
             return redirect(url_for('insurance.list_insurance'))
         flash(error)
     return render_template('create_insurance.html')
+
+# def login_required(viev):
+#     """
+#     Purpose: 
+#     """
+#     @functools.wraps(viev)
+#     def wraped_viev(**kwargs):
+#         if g.user is None:
+#             return redirect(url_for('auth.login'))
+        
+#         return viev(**kwargs)
+    
+#     return wraped_viev
