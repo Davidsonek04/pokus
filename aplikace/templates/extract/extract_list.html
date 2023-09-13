@@ -3,29 +3,31 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Seznam pojištěnců{% endblock title %}
+    <h1> {% block title %}Pjištěnci{% endblock title %}
 {% endblock header %}
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-        <a href="{{ url_for('create.create') }}">Nový pojištěnec</a>
+        <a class="novy_pojistenec" href="{{ url_for('create.create') }}">Nový pojištěnec</a>
 {% endif %}
 
         <table>
             <thead>
                 <tr>
-                    <th>Jmeno</th>
-                    <th>Příjmení</th>
-                    <th>Email</th>
+                    <th>Jméno</th>
+                    <th>Bydliště</th>
+                    <th></th>
                 </tr>
             </thead>
             {% for user in users %}
 
             <table>
                 <tr >
-                    <td>{{ user['name'] }}</td>
-                    <td>{{ user['surname'] }}</td>
-                    <td>{{ user['email'] }}</td>
+                    
+                    <td><a href="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">{{ user['name'] }} {{ user['surname'] }}</a></td>
+                    <td>{{ user['street_descriptive'] }}, {{ user['city'] }}</td>
+                    
+                    
                     <td><form method="post" action="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">
                         <input type="hidden" name="user_mail" value="{{ user['email'] }}">
                         <input type="hidden" name="id" value="{{ user['id'] }}">

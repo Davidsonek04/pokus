@@ -3,6 +3,7 @@ from flask import Blueprint, flash, g, redirect, session, render_template, reque
 from werkzeug.exceptions import abort
 from aplikace.auth import login_required
 from aplikace.db import get_db
+
 import functools
 
 bp = Blueprint('extract', __name__)
@@ -17,6 +18,7 @@ def list():
     users = db.execute(
         'SELECT * FROM users'
     ).fetchall()
+    
     return render_template('extract/extract_list.html', users=users)
 
 # TODO Připraveno na admin / user 

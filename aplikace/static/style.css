@@ -179,3 +179,13 @@ table td, th
     width: 10em;
     border-collapse: collapse;
 }
+
+.novy_pojistenec
+{
+    background: #1067a1;
+    color: white;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+}

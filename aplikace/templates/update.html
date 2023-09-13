@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Editovat{% endblock title %}</h1>
+{% endblock header %}
+
+
+{% block content %}
+<form method='post'>
+    <label for="name">Jméno</label><input name="name" id="name" required value="{{ editovat.name }}">
+    <label for="surname">Příjmení</label><input name="surname" id="surname" required value="{{ editovat.surname }}">
+    <label for="email">Email</label><input name="email" id="email" required value="{{ editovat.email }}">
+    <label for="tel">Telefon</label><input name="tel" id="tel" required value="{{ editovat.tel }}">
+    <label for="street_descriptive">Ulice a číslo popisné</label><input name="street_descriptive" id="street_descriptive" required value="{{ editovat.street_descriptive }}">
+    <label for="city">Město</label><input name="city" id="city" required value="{{ editovat.city }}">
+    <label for="zip_code">PSČ</label><input name="zip_code" id="zip_code" required value="{{ editovat.zip_code }}">
+    
+    <input type="submit" value="uložit"><input type="button" value="Zpět" onclick="window.history.back()">
+</form>
+{% endblock content %}

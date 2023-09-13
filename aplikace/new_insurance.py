@@ -42,16 +42,3 @@ def create_insurance():
             return redirect(url_for('insurance.list_insurance'))
         flash(error)
     return render_template('create_insurance.html')
-
-# def login_required(viev):
-#     """
-#     Purpose: 
-#     """
-#     @functools.wraps(viev)
-#     def wraped_viev(**kwargs):
-#         if g.user is None:
-#             return redirect(url_for('auth.login'))
-        
-#         return viev(**kwargs)
-    
-#     return wraped_viev

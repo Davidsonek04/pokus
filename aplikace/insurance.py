@@ -39,26 +39,26 @@ def create_insurance(user_id):
         user_id = request.form['user_id']
 
         db = get_db()
-        error = None
+        chyba = None
 
         if (not insurance) or (not amound) or (not subject) or (not valid_from) or (not valid_until):
-            error = 'Všechny poíčka jsou povinné!!'
+            chyba = 'Všechny poíčka jsou povinné!!'
 
         test = db.execute(
             'SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,)
             ).fetchone()
 
         if test is not None:
-            error = "Pojištění je již sjednáno!"
+            chyba = "Pojištění je již sjednáno!"
 
-        if error is None:
+        if  chyba is None:
 
             db.execute(
                     'INSERT INTO insurance (insurance, amound, subject, valid_from, valid_until, user_id) VALUES (?, ?, ?, ?, ?, ?)',
                     (insurance, amound, subject, valid_from, valid_until, user_id),
                 )
             db.commit()
-            error = "Pojištění bylo vytvořeno."
+            chyba = "Pojištění bylo vytvořeno."
             return redirect(url_for('insurance.list_insurance', user_id = user_id))
-        flash(error)
+        flash(chyba)
     return render_template('create_insurance.html', user_id = user_id)
