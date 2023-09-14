@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from . import db, auth,  extract, create, insurance, new_insurance, create_user
+from . import db, auth,  extract, create, insurance, new_insurance, create_user, update_delete
 
 def create_app(test_config=None):
     """
@@ -20,6 +20,7 @@ def create_app(test_config=None):
     app.register_blueprint(insurance.bp)
     app.register_blueprint(new_insurance.bp)
     app.register_blueprint(create_user.bp)
+    app.register_blueprint(update_delete.bp)
 
     app.add_url_rule('/', view_func=auth.login)
     

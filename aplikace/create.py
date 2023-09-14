@@ -38,6 +38,7 @@ def create():
                 )
                 db.commit()
                 error = "Pojištěnec byl uložen."
+                flash(error)
                 return redirect(url_for('extract.list'))
         flash(error)
     return render_template('create.html')

@@ -28,10 +28,10 @@
                     <td>{{ user['street_descriptive'] }}, {{ user['city'] }}</td>
                     
                     
-                    <td><form method="post" action="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">
-                        <input type="hidden" name="user_mail" value="{{ user['email'] }}">
+                    <td><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
+                        
                         <input type="hidden" name="id" value="{{ user['id'] }}">
-                            <button type="submit">Pojištění</button>
+                            <button type="submit">Editovat</button>
                         </form>
                     </td>
                 </tr>
