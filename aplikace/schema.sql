@@ -16,12 +16,12 @@ zip_code INTEGER NOT NULL
 CREATE TABLE insurance (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 user_id INTEGER NOT NULL,
-insurance INTEGER NOT NULL,
-amound INTEGER NOT NULL,
+insurance TEXT NOT NULL,
+amount INTEGER NOT NULL,
 subject TEXT NOT NULL,
 valid_from TEXT NOT NULL,
 valid_until TEXT NOT NULL,
-FOREIGN KEY (user_id) REFERENCES users (id)
+FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE administration (
@@ -34,3 +34,5 @@ email TEXT UNIQUE NOT NULL
 
 --  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --  body TEXT NOT NULL,
+
+-- flask --app aplikace init-db     NOTE inicializace databáze

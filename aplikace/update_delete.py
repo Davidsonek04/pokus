@@ -49,6 +49,16 @@ def insured_update(user_id):
 def insured_delete(user_id):
     db = get_db()
     
+    db.execute(
+        'DELETE FROM users WHERE id = ?', (user_id,)
+    )
+    db.execute(
+        'DELETE FROM insurance WHERE user_id = ?', (user_id,)
+    )
+    db.commit()
+    flash(f"Pijštěnec byl smazán")
+    return redirect(url_for('extract.list'))
 
 #return redirect(url_for('insurance.list_insurance',user_id = user_id))
 #UPDATE "uzivatele" SET "prijmeni" = 'Dolejší', "pocet_clanku" = "pocet_clanku" + 1 WHERE "uzivatele_id" = 1;
+#DELETE FROM users WHERE id=2;

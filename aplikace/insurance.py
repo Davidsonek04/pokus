@@ -32,7 +32,7 @@ def create_insurance(user_id):
 
     if request.method == 'POST':
         insurance = request.form['insurance']
-        amound = request.form['amound']
+        amount = request.form['amount']
         subject = request.form['subject']
         valid_from = request.form['valid_from']
         valid_until = request.form['valid_until']
@@ -41,7 +41,7 @@ def create_insurance(user_id):
         db = get_db()
         chyba = None
 
-        if (not insurance) or (not amound) or (not subject) or (not valid_from) or (not valid_until):
+        if (not insurance) or (not amount) or (not subject) or (not valid_from) or (not valid_until):
             chyba = 'Všechny poíčka jsou povinné!!'
 
         test = db.execute(
@@ -54,8 +54,8 @@ def create_insurance(user_id):
         if  chyba is None:
 
             db.execute(
-                    'INSERT INTO insurance (insurance, amound, subject, valid_from, valid_until, user_id) VALUES (?, ?, ?, ?, ?, ?)',
-                    (insurance, amound, subject, valid_from, valid_until, user_id),
+                    'INSERT INTO insurance (insurance, amount, subject, valid_from, valid_until, user_id) VALUES (?, ?, ?, ?, ?, ?)',
+                    (insurance, amount, subject, valid_from, valid_until, user_id),
                 )
             db.commit()
             chyba = "Pojištění bylo vytvořeno."

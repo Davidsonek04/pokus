@@ -29,9 +29,12 @@
                     
                     
                     <td><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
-                        
-                        <input type="hidden" name="id" value="{{ user['id'] }}">
+                            <input type="hidden" name="id" value="{{ user['id'] }}">
                             <button type="submit">Editovat</button>
+                        </form>
+                        <form method="post" action="{{ url_for('update.insured_delete', user_id=user['id']) }}">
+                            <input type="hidden" name="id" value="{{ user['id'] }}">
+                            <button type="submit">Odstranit</button>
                         </form>
                     </td>
                 </tr>
