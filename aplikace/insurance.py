@@ -1,7 +1,7 @@
 from flask import Blueprint, session, g, render_template, request, url_for, redirect, flash
 from aplikace.db import get_db
 from aplikace.auth import login_required
-import functools
+
 
 
 bp = Blueprint('insurance', __name__)
@@ -14,7 +14,7 @@ def list_insurance(user_id):
     db = get_db()
 
     user = db.execute(
-        'SELECT name, surname, email, id FROM users WHERE id = ?', (user_id,)
+        'SELECT * FROM users WHERE id = ?', (user_id,)
     ).fetchone()
 
     posts = db.execute(
@@ -23,8 +23,8 @@ def list_insurance(user_id):
         'WHERE u.id = ?', (user_id,)
     ).fetchall()
 
-    flash(user_id)
-    return render_template('insurance_list.html', posts=posts, user_name=user)
+    page_title = f"Výpis pojištění uživatele {user['name']} {user['surname']}"
+    return render_template('insurance_list.html', posts=posts, user_name=user, user=user, page_title=page_title)
 
 @bp.route('/create_insurance/<user_id>', methods=('GET', 'POST'))
 @login_required

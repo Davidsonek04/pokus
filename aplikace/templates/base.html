@@ -3,12 +3,16 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 <nav>
     <h1>PojištěníApp</h1>
+    
     <ul>
         {% if g.user %}
+        <li class='menu'>
+            <a href="{{url_for('extract.list')}}">Pojištěnci </a>
+        
             <li><span>{{ g.user['name'] }}</span>
             <li><a href="{{ url_for('auth.logout') }}">Odhlásit</a>
         {% else %}        
-            <li><p>Odhlášen</p>
+            <li><p> Odhlášen</p>
                 <p>{{ g.user['name'] }}</p>
         {% endif %}
     </ul>

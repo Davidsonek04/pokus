@@ -3,12 +3,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Pjištěnci{% endblock title %}
+    <h1> {% block title %}Výpis pojištěnců{% endblock title %}
 {% endblock header %}
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-        <a class="novy_pojistenec" href="{{ url_for('create.create') }}">Nový pojištěnec</a>
+        <div><a class="novy_pojistenec" href="{{ url_for('create.create') }}">Nový pojištěnec</a></div>
 {% endif %}
 
         <table>

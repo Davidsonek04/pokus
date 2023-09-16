@@ -32,6 +32,7 @@ def create_insurance():
         if test is not None:
             error = "Pojištění je již sjednáno!"
             
+            
         if error is None:
             
             db.execute(
@@ -39,6 +40,9 @@ def create_insurance():
                     (insurance, amount, subject, valid_from, valid_until, user_id),
                 )
             db.commit()
+            insurance_new = db.execute('SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,))
+            error = f'Pojištění: {insurance_new} bylo sjednáno!'
+            
             return redirect(url_for('insurance.list_insurance'))
         flash(error)
     return render_template('create_insurance.html')

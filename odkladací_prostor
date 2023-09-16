@@ -1,0 +1,19 @@
+{% for post in posts %}
+
+            <table  class="tabulka">
+                <tr class="radky">
+                    <td>{{ post['insurance'] }}</td>
+                    <td>{{ post['amount'] }} - Kč</td>
+                    <td>{{ post['subject'] }}</td>
+                    <td>{{ post['valid_from'] }}</td>
+                    <td>{{ post['valid_until'] }}</td>
+
+                </tr>
+            </table>
+        </table>
+
+        
+
+        {% endfor %}
+
+insurance_list.html

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Výpis pojištění {% endblock title %}</h1>
+    <h1> {% block title %} {{ page_title }} {% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
@@ -9,20 +9,29 @@
         {% set user_id = user_name['id'] %}
         
         <form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
-        <input type='hidden' id='user_id' name='user_id' value="{{ user_name['id'] }}">
+            <input type='hidden' id='user_id' name='user_id' value="{{ user_name['id'] }}">
         </form>
-        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
-        <a href="{{url_for('extract.list')}}">Pojištěnci</a>
+            
+
+        
 {% endif %}
+
+<article>
+    <header>
+        <img src="{{ url_for('static', filename='image/foto.png') }}" alt="avatar" title="xicht">
+    </header>
+    <section>
+        <h1>{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
+        <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}<br>{{ user_name['id'] }}</p>
+    </section>
+</article>
 
         <table class="tabulka">
             <thead>
                 <tr class="radky">
-                    <th>{{ user_name['name'] }}</th>
-                    <th>{{ user_name['surname'] }}</th>
-                    <th>{{ user_name['email'] }}</th>
-                    <th>{{ user_name['id'] }}</th>
-
+                    <th>Pojištění</th>
+                    <th>Částka</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -30,15 +39,31 @@
 
             <table  class="tabulka">
                 <tr class="radky">
-                    <td>{{ post['insurance'] }}</td>
+                    <td><a >{{ post['insurance'] }}</a></td>
                     <td>{{ post['amount'] }} - Kč</td>
-                    <td>{{ post['subject'] }}</td>
-                    <td>{{ post['valid_from'] }}</td>
-                    <td>{{ post['valid_until'] }}</td>
+                    
+
+                    <td><form method="post" action="{{ url_for('update.update_insurance', insurance_id=post['id'], user_name=user_name['id']) }}">
+                        
+                        <button type="submit">Editovat</button>
+                    </form>
+                    
+                    <form method="post" action="{{ url_for('update.insurance_delete', insurance_id=post['id'], user_name=user_name['id']) }}">
+    
+                        
+                        <button type="submit">Odstranit</button>
+                    </form></td>
+
+  
 
                 </tr>
             </table>
         </table>
 
+        
+
         {% endfor %}
+        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        
+        
 {% endblock content %}
