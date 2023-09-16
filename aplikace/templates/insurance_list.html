@@ -22,7 +22,8 @@
     </header>
     <section>
         <h1>{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
-        <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}<br>{{ user_name['id'] }}</p>
+        <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
+        <p>{{ user_name['email'] }}<br /> {{ user_name['tel'] }}
     </section>
 </article>
 
@@ -34,36 +35,22 @@
                     <th></th>
                 </tr>
             </thead>
-
+            
             {% for post in posts %}
 
             <table  class="tabulka">
                 <tr class="radky">
-                    <td><a >{{ post['insurance'] }}</a></td>
+                    <td><a href="{{ url_for('insurance.insurance_detail', user_name_id=user_id, posts=post['id']) }}">{{ post['insurance'] }}</a></td>
                     <td>{{ post['amount'] }} - Kč</td>
-                    
-
                     <td><form method="post" action="{{ url_for('update.update_insurance', insurance_id=post['id'], user_name=user_name['id']) }}">
-                        
                         <button type="submit">Editovat</button>
                     </form>
-                    
                     <form method="post" action="{{ url_for('update.insurance_delete', insurance_id=post['id'], user_name=user_name['id']) }}">
-    
-                        
                         <button type="submit">Odstranit</button>
                     </form></td>
-
-  
-
                 </tr>
             </table>
         </table>
-
-        
-
         {% endfor %}
         <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
-        
-        
 {% endblock content %}

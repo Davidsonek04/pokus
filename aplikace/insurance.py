@@ -62,3 +62,15 @@ def create_insurance(user_id):
             return redirect(url_for('insurance.list_insurance', user_id = user_id))
         flash(chyba)
     return render_template('create_insurance.html', user_id = user_id)
+
+    
+@bp.route('/insurance_detail/<user_name_id>/<posts>', methods=('GET', 'POST'))
+@login_required
+def insurance_detail(user_name_id, posts):
+
+    db = get_db()
+    user = db.execute('SELECT * FROM users WHERE id = ?', (user_name_id,)).fetchone()
+    post = db.execute('SELECT * FROM insurance WHERE id = ?', (posts,)).fetchall()
+    page_title = f"Detajl pojištění uživatele {user['name']} {user['surname']}"
+    return render_template('insurance_detail.html', user_name=user, posts=post, page_title=page_title)
+    

@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Výpis pojištění {% endblock title %}</h1>
+    <h1> {% block title %} {{ page_title }} {% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
         {% set user_id = user_name['id'] %}
-        
-        <form method='post' action="{{url_for('insurance.create_insurance',user_id=user_id)}}">
-        <input type='hidden' id='user_id' name='user_id' value="{{ user_name['id'] }}">
-        </form>
 
-        <a href="{{url_for('extract.list')}}">Pojištěnci</a>
+        
 {% endif %}
 
 <article>
@@ -21,17 +17,20 @@
     </header>
     <section>
         <h1>{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
-        <p><em>{{ user_name['street_descriptive'] }}</em><br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
+        <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
+        
     </section>
 </article>
 
         <table class="tabulka">
             <thead>
                 <tr class="radky">
-                    <th>{{ user_name['name'] }}</th>
-                    <th>{{ user_name['surname'] }}</th>
-                    <th>{{ user_name['email'] }}</th>
-                    <th>{{ user_name['id'] }}</th>
+                    <th>Pojištění</th>
+                    <th>Částka</th>
+                    <th>Předmět pojištění</th>
+                    <th>Platnost od</th>
+                    <th>Platnost do</th>
+                    
 
                 </tr>
             </thead>
@@ -45,7 +44,8 @@
                     <td>{{ post['subject'] }}</td>
                     <td>{{ post['valid_from'] }}</td>
                     <td>{{ post['valid_until'] }}</td>
-
+                    
+                    
                 </tr>
             </table>
         </table>
@@ -53,5 +53,6 @@
         
 
         {% endfor %}
-        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        
+        <input type="button" value="Zpět" onclick="window.history.back()">
 {% endblock content %}
