@@ -26,7 +26,7 @@ def insured_update(user_id):
             updated_street_descriptive = request.form.get('street_descriptive')
             updated_city = request.form.get('city')
             updated_zip_code = request.form.get('zip_code')
-            #user_id = request.form.get('user_id')
+            user_id = request.form.get('user_id')
 
     if updated_email != None:
 
@@ -55,14 +55,10 @@ def insured_delete(user_id):
     flash(f"Pijštěnec byl smazán")
     return redirect(url_for('extract.list'))
 
-#return redirect(url_for('insurance.list_insurance',user_id = user_id))
-#UPDATE "uzivatele" SET "prijmeni" = 'Dolejší', "pocet_clanku" = "pocet_clanku" + 1 WHERE "uzivatele_id" = 1;
-#DELETE FROM users WHERE id=2;
-
-@bp.route('/update_insurance/<insurance_id>', methods=('GET', 'POST'))
+@bp.route('/update_insurance/<insurance_id>/<user_name>', methods=('GET', 'POST'))
 @login_required
-def update_insurance(insurance_id):
-    user_name = request.args.get('user_name')
+def update_insurance(insurance_id, user_name):
+    
     db = get_db()
 
     insurance_edit = db.execute(
@@ -95,8 +91,8 @@ def update_insurance(insurance_id):
             # Přesměrování po úspěšné aktualizaci
         
         return redirect(url_for('insurance.list_insurance',user_id=user_name))
-
-    return render_template('insurance_update.html', insurance_edit=insurance_edit, insurance_d=insurance_id)
+    page_title = f"Úprava pojištění"
+    return render_template('insurance_update.html', insurance_edit=insurance_edit, insurance_d=insurance_id, user_id=user_name, page_title=page_title)
 
 @bp.route('/delete_insurance/<insurance_id>', methods=('GET', 'POST'))
 @login_required

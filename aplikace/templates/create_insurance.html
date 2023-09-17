@@ -14,7 +14,8 @@
         <label for="valid_from">platnost od</label><input name="valid_from" id="valid_from" required>
         <label for="valid_until">platnost_do</label><input name="valid_until" id="valid_until" required>
         
-        <input type="submit" value="přidat"><input type="button" value="Zpět" onclick="window.history.back()">
+        <input type="submit" value="přidat">
+        <a href="{{ url_for('insurance.list_insurance', user_id=user_id) }}">Zpět na výpis pojištění</a>
         
         <input type='hidden' name='user_id' value="{{ user_id }}">
         

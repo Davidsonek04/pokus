@@ -53,6 +53,6 @@
         
 
         {% endfor %}
+        <td><a href="{{ url_for('insurance.list_insurance', user_id=user_id) }}">Zpět na výpis pojištění</a></td>
         
-        <input type="button" value="Zpět" onclick="window.history.back()">
 {% endblock content %}

@@ -1,10 +1,10 @@
 
 import functools
 from flask import Blueprint, flash, g, render_template, request, session, url_for, redirect
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 from aplikace.db import get_db
 
-# toto je opsaná 
+
 bp = Blueprint('auth', __name__, url_prefix='/')
 
 @bp.route('/', methods= ['GET', 'POST'])
@@ -27,16 +27,16 @@ def login():
         if error is None:
             session.clear()
             session['email'] = user['email']
-            if user['name'] == 'David':
-                return redirect(url_for('extract.list'))    # TODO vytvořit extract.list
-            return redirect(url_for('extract.list_one'))
+            
+            return redirect(url_for('extract.list'))   
+            
         flash(error)
 
     return render_template('auth/login.html')
     
 # end def
 
-@bp.route('/logout')        # NOTE nevím jestli je routa správně
+@bp.route('/logout')
 def logout():
     """
     Purpose: 

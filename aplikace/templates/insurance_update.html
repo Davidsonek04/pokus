@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block header %}
-    <h1>{% block title %}Insurance edit{% endblock title %}</h1>
+    <h1>{% block title %}{{ page_title }}{% endblock title %}</h1>
 {% endblock header %}
 
 
@@ -12,6 +12,7 @@
     <label for="valid_from">Platnost od</label><input name="valid_from" id="valid_from" required value="{{ insurance_edit.valid_from }}">
     <label for="valid_until">Platnost do</label><input name="valid_until" id="valid_until" required value="{{ insurance_edit.valid_until }}">
     <input type='hidden' name='insurance_id' value="{{ insurance_id }}">
-    <input type="submit" value="uložit"><input type="button" value="Zpět" onclick="window.history.back()">
+    <input type="submit" value="uložit">
+    <a href="{{ url_for('insurance.list_insurance', user_id=user_id) }}">Zpět na výpis pojištění</a>
     {% endblock content %}
 </form>

@@ -14,6 +14,6 @@
         <label for="city">Město</label><input name="city" id="city" required>
         <label for="zip_code">PSČ</label><input name="zip_code" id="zip_code" required>
         
-        <input type="submit" value="uložit"><input type="button" value="Zpět" onclick="window.history.back()">
+        <input type="submit" value="uložit"><a href="{{url_for('extract.list')}}">Zpět na výpis pojištěnců </a>
     </form>
 {% endblock content %}
