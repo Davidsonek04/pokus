@@ -23,8 +23,12 @@ def list_insurance(user_id):
         'WHERE u.id = ?', (user_id,)
     ).fetchall()
 
-    page_title = f"Výpis pojištění uživatele {user['name']} {user['surname']}"
-    return render_template('insurance_list.html', posts=posts, user_name=user, user=user, page_title=page_title)
+    if posts == None:
+        posts['insurance'] = "None"
+        posts['amound'] = 0
+    else:
+        page_title = f"Výpis pojištění uživatele {user['name']} {user['surname']}"
+        return render_template('insurance_list.html', posts=posts, user_name=user, user=user, page_title=page_title)
 
 @bp.route('/create_insurance/<user_id>', methods=('GET', 'POST'))
 @login_required

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %} {{ page_title }} {% endblock title %}</h1>
+    <h1 class="info"> {% block title %} {{ page_title }} {% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
@@ -13,10 +13,10 @@
 
 <article>
     <header>
-        <img src="{{ url_for('static', filename='image/foto.png') }}" alt="avatar" title="xicht">
+        <img src="{{ url_for('static', filename='image/foto.png') }}" alt="xicht" title="xicht">
     </header>
     <section>
-        <h1>{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
+        <h1 class="user_name">{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
         <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
         
     </section>
@@ -30,24 +30,20 @@
                     <th>Předmět pojištění</th>
                     <th>Platnost od</th>
                     <th>Platnost do</th>
-                    
-
                 </tr>
             </thead>
 
             {% for post in posts %}
 
-            <table  class="tabulka">
+            <tbody  class="tabulka">
                 <tr class="radky">
                     <td>{{ post['insurance'] }}</td>
                     <td>{{ post['amount'] }} - Kč</td>
                     <td>{{ post['subject'] }}</td>
                     <td>{{ post['valid_from'] }}</td>
-                    <td>{{ post['valid_until'] }}</td>
-                    
-                    
+                    <td>{{ post['valid_until'] }}</td>     
                 </tr>
-            </table>
+            </tbody>
         </table>
 
         

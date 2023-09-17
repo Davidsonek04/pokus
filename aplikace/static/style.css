@@ -1,92 +1,169 @@
-html 
-{ 
-    font-family: sans-serif; 
-    background: #eee; 
-    padding: 1rem; 
-}
-
-body 
-{ 
-    max-width: 850px; margin: 0 auto; 
-    background: white; 
-    box-shadow: 3px 3px 6px gray;
-    border-radius: 15px;
-}
-
-h1 
-{ 
-    font-family: serif; 
-    color: #4e994e; 
-    margin: 1rem 0; 
-}
-
-a 
-{ 
-    color: #1067a1;
-    text-decoration: none;
-}
-
-hr 
-{ 
-    border: none; 
-    border-top: 1px solid lightgray; 
-}
-
-nav 
-{ 
-    background: lightgray; 
-    display: flex; 
-    align-items: center; 
-    padding: 0 0.5rem; 
-    border-radius: 15px 15px 0 0;
-}
-
-nav h1 
-{ 
-    flex: auto; 
-    margin: 0; 
-}
-
-nav h1 a 
-{ 
-    text-decoration: none; 
-    padding: 0.25rem 0.5rem; 
-}
-
-nav ul  
-{ 
-    display: flex; 
-    list-style: none; 
-    margin: 0; padding: 0; 
-}
-
-nav ul menu
+body
 {
+    font: 14px "Poppins";
+    background: #f9f9f9;
+    color: #414042;
+    box-sizing: border-box;
+    margin: 0;
+    
+}
+
+body > header
+{
+    height: 80px;
+    width: 100%;
+    background: rgb(110, 110, 233);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+    top: 0;
+   
+}
+
+body header a 
+{
+    text-decoration: none;
+    color: white;
+}
+
+#logo
+{
+    margin: auto 0 auto 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#logo > *
+{
+    margin: 0 80px 0 0;
+}
+
+#logo h1
+{
+    font-weight: normal;
+    font-size: 1.8em;
+    line-height: 1.2em;
+    color: white;
+}
+
+nav ul
+{
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+nav ul li
+{
+    
+    margin: 0 5px;
+    font-size: 1.4em;
+    line-height: 3em;
+}
+
+nav ul li span
+{
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+article
+{
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 20px 10px 20px;
+}
+
+article header
+{
+    height: 80px;
+}
+
+article h1
+{
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: normal;
+}
+
+article h1,
+article h2,
+article h3
+{
+    color: black;
+}
+
+article section p
+{
+    margin-bottom: 1.5px;
+    line-height: 1.6em;
+}
+
+img {
     float: left;
+    padding-right: 20px;
+    margin: 10px 0;
 }
 
-nav ul li a, nav ul li span, header .action 
-{ 
-    display: block; 
-    padding: 0.5rem; 
+.menu
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.content 
-{ 
-    padding: 0 1rem 1rem; 
+.editovat
+{
+    background-color: yellowgreen;
+    color: white;
+    width: 7em;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
 }
 
-.content > header 
-{ 
-    border-bottom: 1px solid lightgray; 
-    display: flex; 
-    align-items: flex-end;
+.odstranit
+{
+    background-color: #cc2f2e;
+    color: white;
+    width: 7em;
+    border-radius: 5px;
+    padding: 5px;
 }
 
-.content > header h1 
-{ 
-    flex: auto; 
-    margin: 1rem 0 0.25rem 0; 
+.editovat:hover
+{
+    background-color: rgb(172, 212, 90);
+}
+
+.odstranit:hover
+{
+    background-color: red;
+}
+
+
+
+.vizitka
+{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.email
+{
+    margin-right: 50px;
+}
+
+.user_name
+{
+    color: black;
+    font-size: 1.4em;
+    margin-top: 0; 
 }
 
 .flash 
@@ -97,46 +174,25 @@ nav ul li a, nav ul li span, header .action
     border: 1px solid #377ba8; 
 }
 
-.post > header 
+input[type=submit] 
 { 
-    display: flex; 
-    align-items: flex-end; 
-    font-size: 0.85em; 
+    align-self: start; 
+    min-width: 10em; 
 }
 
-.post > header > div:first-of-type 
+.content textarea 
 { 
-    flex: auto; 
+    min-height: 12em; 
+    resize: vertical;
 }
 
-.post > header h1 
+.content input, .content textarea 
 { 
-    font-size: 1.5em; 
-    margin-bottom: 0; 
-}
-
-.post .about 
-{ 
-    color: slategray; 
-    font-style: italic; 
-}
-
-.post .body 
-{ 
-    white-space: pre-line; 
+    margin-bottom: 1em; 
 }
 
 .content:last-child 
-{ 
-    margin-bottom: 0; 
-}
-
-.content form 
-{ 
-    margin: 1em 0; 
-    display: flex; 
-    flex-direction: column; 
-}
+{ margin-bottom: 0; }
 
 .content label 
 { 
@@ -144,78 +200,97 @@ nav ul li a, nav ul li span, header .action
     margin-bottom: 0.5em; 
 }
 
-.content input, .content textarea 
+.post > header 
 { 
-    margin-bottom: 1em;
-    min-width: 10em;
-    max-width: 20em;
-    border-radius: 5px;
-    height: 20px;
+    display: flex; 
+    align-items: flex-end; 
+    font-size: 0.85em; 
+}
+.post > header > div:first-of-type 
+{ 
+    flex: auto; 
+}
+.post > header h1 
+{ 
+    font-size: 1.5em; 
+    margin-bottom: 0; 
+}
+.post .about 
+{ 
+    color: slategray; 
+    font-style: italic; 
+}
+.post .body 
+{ 
+    white-space: pre-line; 
 }
 
-.content textarea 
+.content 
 { 
-    min-height: 12em; 
-    resize: vertical; 
+    box-sizing: border-box;
+    padding: 10px; 
 }
 
-input.danger 
-{ 
-    color: #cc2f2e; 
-}
-
-input[type=submit] 
-{ 
-    align-self: start; 
-    min-width: 10em; 
-}
-
-input[type=button]
+article table
 {
-    align-self: start; 
-    min-width: 10em; 
-}
-
-
-
-table td, th
-{
-    border: solid 1px;
-    width: 10em;
     border-collapse: collapse;
+    width: 860px;
+}
+article table tr th
+{
+    border: 1px solid grey;   
+    width: 33%;
+    padding: 10px;
+    vertical-align: center; 
+}
+
+article table tr td
+{
+    border: 1px solid grey;
+    width: 33%;
+    padding: 10px;
+    vertical-align: center;
+}
+
+
+.akce
+{
+    display: flex;
+    justify-content: center;
 }
 
 .novy_pojistenec
 {
-    background: #1067a1;
+    background: blue;
     color: white;
-    font-size: 1em;
-    padding: 5px;
     border-radius: 5px;
-    margin: 0 auto;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+    margin: 10px auto;
+    width: 10em;
 }
 
-article {    
-    
-    border: 1px solid white;
-    margin: 10px 10px 0 10px;
-    width: 500px;
-    height: 200px;
+.novy_pojistenec a
+{
+    color: white;
+    text-decoration: none;
 }
 
-img {
-    float: left;
-    padding-right: 20px;
-    margin: 10px 0;
+.tlacitko_nove_pojisteni
+{
+    margin-top: 20px;
 }
 
-article h1 {
-    font-size: 1.4em;
-    margin-top: 40px;
-    margin: 10;
+.nove_pojisteni
+{
+    background: blue;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
 }
-
-article p {
-    text-align: left;
-    font-size: 1.2em;
-}
+.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content label { font-weight: bold; margin-bottom: 0.5em; color: blue;}
+.content input, .content textarea { margin-bottom: 1em; max-width: 20em;}
+.content textarea { min-height: 12em; resize: vertical; }

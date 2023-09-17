@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %} {{ page_title }} {% endblock title %}</h1>
+    <h1 class="info"> {% block title %} {{ page_title }} {% endblock title %}</h1>
 {% endblock header %}
 
 {% block content %}
@@ -21,9 +21,11 @@
         <img src="{{ url_for('static', filename='image/foto.png') }}" alt="avatar" title="xicht">
     </header>
     <section>
-        <h1>{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
-        <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
-        <p>{{ user_name['email'] }}<br /> {{ user_name['tel'] }}
+        <h1 class="user_name">{{ user_name['name'] }} <th>{{ user_name['surname'] }}</h1>
+         <div class="vizitka">   
+            <p>{{ user_name['street_descriptive'] }}<br /> {{ user_name['city'] }}<br>{{ user_name['zip_code'] }}</p>
+            <p class="email">{{ user_name['email'] }}<br /> {{ user_name['tel'] }}
+        </div>
     </section>
 </article>
 
@@ -38,19 +40,19 @@
             
             {% for post in posts %}
 
-            <table  class="tabulka">
+            <tbody>
                 <tr class="radky">
                     <td><a href="{{ url_for('insurance.insurance_detail', user_name_id=user_id, posts=post['id']) }}">{{ post['insurance'] }}</a></td>
                     <td>{{ post['amount'] }} - Kč</td>
-                    <td><form method="post" action="{{ url_for('update.update_insurance', insurance_id=post['id'], user_name=user_name['id']) }}">
-                        <button type="submit">Editovat</button>
+                    <td><div class="akce"><form  method="post" action="{{ url_for('update.update_insurance', insurance_id=post['id'], user_name=user_name['id']) }}">
+                        <button type="submit" class="editovat">Editovat</button>
                     </form>
                     <form method="post" action="{{ url_for('update.insurance_delete', insurance_id=post['id'], user_name=user_name['id']) }}">
-                        <button type="submit">Odstranit</button>
-                    </form></td>
+                        <button type="submit" class="odstranit">Odstranit</button>
+                    </form></div></td>
                 </tr>
-            </table>
+            </tbody>
         </table>
         {% endfor %}
-        <a href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a>
+        <div class="tlacitko_nove_pojisteni"><a class="nove_pojisteni" href="{{url_for('insurance.create_insurance',user_id=user_id)}}">Nové pojištění</a></div>
 {% endblock content %}

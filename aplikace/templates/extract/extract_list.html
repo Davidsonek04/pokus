@@ -1,17 +1,16 @@
-Čus vole tady musíš udělat eště hodně práce !!!!
 
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1> {% block title %}Výpis pojištěnců{% endblock title %}
+    <h1 class="info"> {% block title %}Výpis pojištěnců{% endblock title %}
 {% endblock header %}
 
 {% block content %}
 {% if g.user['name'] == 'David' %}
-        <div><a class="novy_pojistenec" href="{{ url_for('create.create') }}">Nový pojištěnec</a></div>
+        <div class="novy_pojistenec"><a href="{{ url_for('create.create') }}">Nový pojištěnec</a></div>
 {% endif %}
 
-        <table>
+        <table class="tabulka">
             <thead>
                 <tr>
                     <th>Jméno</th>
@@ -21,21 +20,21 @@
             </thead>
             {% for user in users %}
 
-            <table>
+            <table class="tabulka">
                 <tr >
                     
                     <td><a href="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">{{ user['name'] }} {{ user['surname'] }}</a></td>
                     <td>{{ user['street_descriptive'] }}, {{ user['city'] }}</td>
                     
                     
-                    <td><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
+                    <td><div class="akce"><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
                             <input type="hidden" name="id" value="{{ user['id'] }}">
-                            <button type="submit">Editovat</button>
+                            <button type="submit" class="editovat">Editovat</button>
                         </form>
                         <form method="post" action="{{ url_for('update.insured_delete', user_id=user['id']) }}">
                             <input type="hidden" name="id" value="{{ user['id'] }}">
-                            <button type="submit">Odstranit</button>
-                        </form>
+                            <button type="submit" class="odstranit">Odstranit</button>
+                        </form></div>
                     </td>
                 </tr>
             </table>
