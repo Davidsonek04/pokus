@@ -6,38 +6,38 @@
 {% endblock header %}
 
 {% block content %}
+
+<table class="tabulka">
+    <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Bydliště</th>
+            <th></th>
+        </tr>
+    </thead>
+    {% for user in users %}
+    
+    <table class="tabulka">
+        <tr >
+            
+            <td><a href="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">{{ user['name'] }} {{ user['surname'] }}</a></td>
+            <td>{{ user['street_descriptive'] }}, {{ user['city'] }}</td>
+            
+            
+            <td><div class="akce"><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
+                <input type="hidden" name="id" value="{{ user['id'] }}">
+                <button type="submit" class="editovat">Editovat</button>
+            </form>
+            <form method="post" action="{{ url_for('update.insured_delete', user_id=user['id']) }}">
+                <input type="hidden" name="id" value="{{ user['id'] }}">
+                <button type="submit" class="odstranit">Odstranit</button>
+            </form></div>
+        </td>
+    </tr>
+</table>
+</table>
+{% endfor %}
 {% if g.user['name'] == 'David' %}
-        <div class="novy_pojistenec"><a href="{{ url_for('create.create') }}">Nový pojištěnec</a></div>
+        <div class="tlacitko_zpet"><a href="{{ url_for('create.create') }}">Nový pojištěnec</a></div>
 {% endif %}
-
-        <table class="tabulka">
-            <thead>
-                <tr>
-                    <th>Jméno</th>
-                    <th>Bydliště</th>
-                    <th></th>
-                </tr>
-            </thead>
-            {% for user in users %}
-
-            <table class="tabulka">
-                <tr >
-                    
-                    <td><a href="{{ url_for('insurance.list_insurance', user_id=user['id']) }}">{{ user['name'] }} {{ user['surname'] }}</a></td>
-                    <td>{{ user['street_descriptive'] }}, {{ user['city'] }}</td>
-                    
-                    
-                    <td><div class="akce"><form method="post" action="{{ url_for('update.insured_update', user_id=user['id']) }}">
-                            <input type="hidden" name="id" value="{{ user['id'] }}">
-                            <button type="submit" class="editovat">Editovat</button>
-                        </form>
-                        <form method="post" action="{{ url_for('update.insured_delete', user_id=user['id']) }}">
-                            <input type="hidden" name="id" value="{{ user['id'] }}">
-                            <button type="submit" class="odstranit">Odstranit</button>
-                        </form></div>
-                    </td>
-                </tr>
-            </table>
-        </table>
-        {% endfor %}
 {% endblock content %}

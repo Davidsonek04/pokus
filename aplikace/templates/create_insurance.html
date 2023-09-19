@@ -7,17 +7,31 @@
 
 {% block content %}
 
-    <form method='post'>
-        <label for="insurance">Typ pojištění</label><input name="insurance" id="insurance" required>
-        <label for="amount">Částka</label><input name="amount" id="amount" required>
-        <label for="subject">Předmět pojištění</label><input name="subject" id="subject" required>
-        <label for="valid_from">platnost od</label><input name="valid_from" id="valid_from" required>
-        <label for="valid_until">platnost_do</label><input name="valid_until" id="valid_until" required>
+    <form method='post' class="dva_sloupce">
+        <div class="sloupec_formulare">
+            <label class="typ_pojisteni" for="insurance">Typ pojištění</label>
+            <input name="insurance" id="insurance" required>
         
-        <input type="submit" value="přidat">
-        <a href="{{ url_for('insurance.list_insurance', user_id=user_id) }}">Zpět na výpis pojištění</a>
+            <label for="amount">Částka</label>
+            <input name="amount" id="amount" required>
+            
+        </div>
+        <div class="sloupec_formulare">
+            <label for="subject">Předmět pojištění</label>
+            <input name="subject" id="subject" required>
+            
+            <label for="valid_from">platnost od</label>
+            <input name="valid_from" id="valid_from" required>
+            
+            <label for="valid_until">platnost_do</label>
+            <input name="valid_until" id="valid_until" required>
+            
+            <input class="ulozit" type="submit" value="Vytvořit">
+        </div>
         
         <input type='hidden' name='user_id' value="{{ user_id }}">
         
+        
     </form>
+    <div class="tlacitko_zpet"><a href="{{ url_for('insurance.list_insurance', user_id=user_id) }}">Výpis pojištění</a></div>
 {% endblock content %}

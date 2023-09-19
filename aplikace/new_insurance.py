@@ -42,7 +42,7 @@ def create_insurance():
             db.commit()
             insurance_new = db.execute('SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,))
             error = f'Pojištění: {insurance_new} bylo sjednáno!'
-            
+            flash(error)
             return redirect(url_for('insurance.list_insurance'))
         flash(error)
     return render_template('create_insurance.html')

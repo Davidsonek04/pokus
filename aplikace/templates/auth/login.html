@@ -6,10 +6,12 @@
 
 {% block content %}
         <form method="POST">
-            <label for="email">Email</label>
-            <input name="email" id="email" required>
-            <label for="password">heslo</label>
-            <input type="password" name="password" id="password">
-            <input type="submit" value="přihlásit">
+            <div class="sloupec_formulare">
+                <label for="email">Email</label>
+                <input name="email" id="email" required>
+                <label for="password">heslo</label>
+                <input type="password" name="password" id="password">
+                <input class="ulozit" type="submit" value="přihlásit">
+            </div>
         </form>
 {% endblock content %}

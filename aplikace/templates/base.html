@@ -12,12 +12,12 @@
         </div>
         <nav class='menu'>
             <ul>
-                <li ><a href="{{url_for('extract.list')}}">Pojištěnci </a></li>           
+                <li ><a class="pojistenci" href="{{url_for('extract.list')}}">Pojištěnci </a></li>           
             </ul> 
             {% if g.user %}
             <ul >    
-                <li><span>{{ g.user['name'] }}</span></li>
-                <li><a href="{{ url_for('auth.logout') }}">Odhlásit</a></li>
+                <li><span class="uzivatel">{{ g.user['name'] }}</span></li>
+                <li><a class="pojistenci" href="{{ url_for('auth.logout') }}">Odhlásit</a></li>
             </ul>
             {% else %}       
             <ul> 

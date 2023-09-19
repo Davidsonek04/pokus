@@ -1,7 +1,7 @@
 body
 {
     font: 14px "Poppins";
-    background: #f9f9f9;
+    background: white;
     color: #414042;
     box-sizing: border-box;
     margin: 0;
@@ -114,7 +114,7 @@ img {
     align-items: center;
     justify-content: space-around;
 }
-
+/* Tlačítka  Editovat a Delete*/ 
 .editovat
 {
     background-color: yellowgreen;
@@ -136,12 +136,12 @@ img {
 
 .editovat:hover
 {
-    background-color: rgb(172, 212, 90);
+    filter: brightness(110%) contrast(90%);
 }
 
 .odstranit:hover
 {
-    background-color: red;
+    filter: brightness(130%) contrast(90%);
 }
 
 
@@ -150,7 +150,7 @@ img {
 {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     font-size: 1.2em;
 }
 
@@ -176,8 +176,8 @@ img {
 
 input[type=submit] 
 { 
-    align-self: start; 
-    min-width: 10em; 
+    /*align-self: start;*/ 
+    width: 10em; 
 }
 
 .content textarea 
@@ -215,15 +215,7 @@ input[type=submit]
     font-size: 1.5em; 
     margin-bottom: 0; 
 }
-.post .about 
-{ 
-    color: slategray; 
-    font-style: italic; 
-}
-.post .body 
-{ 
-    white-space: pre-line; 
-}
+
 
 .content 
 { 
@@ -259,7 +251,7 @@ article table tr td
     justify-content: center;
 }
 
-.novy_pojistenec
+.tlacitko_zpet
 {
     background: blue;
     color: white;
@@ -270,27 +262,83 @@ article table tr td
     width: 10em;
 }
 
-.novy_pojistenec a
+.tlacitko_zpet a
 {
     color: white;
     text-decoration: none;
 }
 
-.tlacitko_nove_pojisteni
+.tlacitko_zpet:hover
 {
-    margin-top: 20px;
+    background-color: rgb(98, 98, 221);
 }
 
-.nove_pojisteni
+.dva_sloupce
 {
-    background: blue;
-    border-radius: 5px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+
+.sloupec_formulare
+{
+    display: flex;
+    flex-direction: column;
+}
+
+form div label
+{
+    margin: 1em 0;
+    display: flex; 
+    flex-direction: column; 
+}
+
+.content label 
+{ 
+    font-weight: bold; 
+    margin-bottom: 0.5em; 
+    color: rgb(141, 59, 59);
+}
+.content input, .content textarea 
+{ 
+    margin-bottom: 1em; 
+    max-width: 20em;
+}
+.content textarea 
+{ 
+    min-height: 12em; 
+    resize: vertical; 
+}
+
+.ulozit
+{
+    background-color: blue;
+    color: white;
+    /*margin-top: 35px;*/
     padding: 5px;
-    color: white;
-    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
 }
-.content form { margin: 1em 0; display: flex; flex-direction: column; }
-.content label { font-weight: bold; margin-bottom: 0.5em; color: blue;}
-.content input, .content textarea { margin-bottom: 1em; max-width: 20em;}
-.content textarea { min-height: 12em; resize: vertical; }
+
+.ulozit:hover
+{
+    filter: brightness(140%) contrast(70%);
+}
+
+.uzivatel
+{
+    color: black;
+}
+
+.pojistenci:hover
+{
+    color: black;
+}
+
+table tbody tr td a
+{
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+}
