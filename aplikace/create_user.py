@@ -7,6 +7,14 @@ bp = Blueprint('create_user', __name__)
 
 @bp.route('/user_create', methods=('GET', 'POST'))
 def create_user():
+    """
+    Zobrazí formulář pro vytvoření nového uživatele a provede uložení do databáze.
+
+    Returns:
+        flask.Response: HTML stránka s formulářem pro vytvoření nového uživatele
+        a provede uložení do databáze.
+        
+    """
     if request.method == 'POST':
         name = request.form['name']
         surname = request.form['surname']

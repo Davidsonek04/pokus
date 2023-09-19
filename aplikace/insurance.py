@@ -3,13 +3,19 @@ from aplikace.db import get_db
 from aplikace.auth import login_required
 
 
-
+# Vytvoření Blueprint pro modul 'insurance'
 bp = Blueprint('insurance', __name__)
 
 @bp.route('/insurance/<user_id>', methods=('GET', 'POST'))
 @login_required
 def list_insurance(user_id):
-    """_summary_
+    """Zobrazí seznam pojištění pro konkrétního pojištěnce.
+        
+    Args:
+        user_id (int): ID pojištěnce, pro kterého se má zobrazit seznam pojištění.
+        
+    Returns:
+        flask.Response: HTML stránka se seznamem pojištění.
     """
     db = get_db()
 
@@ -29,6 +35,14 @@ def list_insurance(user_id):
 @bp.route('/create_insurance/<user_id>', methods=('GET', 'POST'))
 @login_required
 def create_insurance(user_id):
+    """Vytvoří nové pojištění pro konkrétního pojištěnce.
+
+    Args:
+        user_id (int): ID pojištěnce, pro ketrého se má vytvořit pojištění.
+
+    Returns:
+        _type_: HTML stránka pro vytvoření pojištění.
+    """
 
     if request.method == 'POST':
         insurance = request.form['insurance']
@@ -67,6 +81,15 @@ def create_insurance(user_id):
 @bp.route('/insurance_detail/<user_name_id>/<posts>', methods=('GET', 'POST'))
 @login_required
 def insurance_detail(user_name_id, posts):
+    """Zobrazí detaily konkrétního pojištění.
+
+    Args:
+        user_name_id (int): ID pojištěnce, pro kterého se zobrazují detaily pojištění.
+        posts (int): ID pojištěni, které se má zobrazit.
+
+    Returns:
+        flask.Response: HTML stránka s detaily pojištění.
+    """
 
     db = get_db()
     user = db.execute('SELECT * FROM users WHERE id = ?', (user_name_id,)).fetchone()

@@ -3,17 +3,28 @@ from flask import Blueprint, flash, render_template, redirect, g, request,url_fo
 from aplikace.db import get_db
 from aplikace.auth import login_required
 
+# Vytvoření Blueprint pro modul 'update'
 bp = Blueprint('update', __name__)
 
 @bp.route('/update/<user_id>', methods=('GET', 'POST'))
 @login_required
 def insured_update(user_id):
+    """Zobrazí formulář pro úpravu infornací o pojištěnci a provede
+        aktualizaci v databázi.
+
+    Args:
+        user_id (int): ID pojištěnce, který se má upravit.
+
+    Returns:
+        flask.Response: HTML stránka s formulářem pro úpravu informací o pojištěnci
+        a nebo přesměrování na seznam pojištěnců.
+    """
     db = get_db()
 
     edit = db.execute(
         'SELECT * FROM users WHERE id = ? ', (user_id,)
     ).fetchone()
-    #return render_template('update.html', editovat=editovat)
+    
 
     id = edit['id']
 
@@ -47,6 +58,14 @@ def insured_update(user_id):
 @bp.route('/delete/<user_id>', methods=('GET', 'POST'))
 @login_required
 def insured_delete(user_id):
+    """Smaže pojištěnce z databáze.
+
+    Args:
+        user_id (int): ID pojištěnce, který se má smazat.
+
+    Returns:
+        flask.Response: Přesměrování na seznam pojistěnců po úspěšném smazání.
+    """
     db = get_db()
     
     db.execute('DELETE FROM users WHERE id = ?', (user_id,))
@@ -58,6 +77,16 @@ def insured_delete(user_id):
 @bp.route('/update_insurance/<insurance_id>/<user_name>', methods=('GET', 'POST'))
 @login_required
 def update_insurance(insurance_id, user_name):
+    """Zobrazí formulář pro úpravu informací o pojištění a provede aktualizaci v databázi.
+
+    Args:
+        insurance_id (int): ID pojištění, které se má upravit.
+        user_name (str): Jméno a příjmení uživatele, ke kterému pojištění patří.
+
+    Returns:
+        flask.Response: HTML stránka s formulářem pro úpravu informací o pojištění
+        a nebo přesměrování na seznam pojištění.
+    """
     
     db = get_db()
 
@@ -97,6 +126,14 @@ def update_insurance(insurance_id, user_name):
 @bp.route('/delete_insurance/<insurance_id>', methods=('GET', 'POST'))
 @login_required
 def insurance_delete(insurance_id):
+    """Smaže pojištění z databáze.
+
+    Args:
+        insurance_id (int): ID pojištění, které se má smazat.
+
+    Returns:
+        flask.Response: Přesměrování na seznam pojištění po úspěšném smazání.
+    """
     user_name = request.args.get('user_name')
     db = get_db()
     insurance_data = db.execute('SELECT * FROM insurance WHERE id = ?', (insurance_id,)).fetchone()

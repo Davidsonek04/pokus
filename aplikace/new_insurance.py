@@ -4,12 +4,18 @@ from aplikace.db import get_db
 import functools
 from aplikace.auth import login_required
 
+# Vytvoření Blueprint pro modul 'new_insurance'
 bp = Blueprint('new_insurance', __name__)
 
 @bp.route('/new_insurance', methods=('GET', 'POST'))
 @login_required
 def create_insurance():
-        
+    """Zobrazí formulář pro vytvoření nového pojištění a uloží ho do databáze.
+    
+    Returns:
+        flask:.Response: HTML stránka s formuláře pro vytvoření nového pojištění
+        a nebo pro návrat zpět na výpis pojištění.
+    """       
 
     if request.method == 'POST':
         insurance = request.form['insurance']
@@ -22,6 +28,7 @@ def create_insurance():
         db = get_db()
         error = None
         
+        # Kontrola zda jsou vyplněny všechny políčka formuláře.
         if (not insurance) or (not amount) or (not subject) or (not valid_from) or (not valid_until):
             error = 'Všechny poíčka jsou povinné!!'
             
@@ -29,10 +36,11 @@ def create_insurance():
             'SELECT insurance FROM insurance WHERE insurance = ? AND user_id = ? ', (insurance, user_id,) 
             ).fetchone()
         
+        # Kontrola jestli pojištění už není sjednáno.
         if test is not None:
             error = "Pojištění je již sjednáno!"
             
-            
+        # Uložení nového pojištění do databáze.
         if error is None:
             
             db.execute(

@@ -4,8 +4,10 @@ import click
 from flask import current_app, g
 
 def get_db():
-    """
-    Purpose: přístup k databázi
+    """Získá přístup k databázi.
+
+    Returns:
+        sqlite3.Connection: Připojení k databázi.
     """
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -19,8 +21,10 @@ def get_db():
 # end def
 
 def close_db(e = None):
-    """
-    Purpose: ukončuje práci s databází
+    """Ukončuje práci s databází.
+
+    Args:
+        e: Chybový objekt, pokud existuje.
     """
     db = g.pop('db', None)
 
@@ -30,7 +34,7 @@ def close_db(e = None):
 # end def
 def init_db():
     """
-    Purpose: 
+    Inicializuje databázi vytvořením tabulek.
     """
     db = get_db()
 
@@ -41,7 +45,8 @@ def init_db():
 @click.command('init-db')
 def init_db_command():
     """
-    Purpose: Vymaže existující data a vytvoří nové tabulky
+    Vymaže existující data a vytvoří nové tabulky
+    
     """
     init_db()
     click.echo('Inicializuji databázi')
@@ -49,7 +54,11 @@ def init_db_command():
 
 def init_app(app):
     """
-    Purpose: 
+    Inicializuje aplikaci pro práci s databází.
+
+    Args:
+        app: Flask aplikace.
+        
     """
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)

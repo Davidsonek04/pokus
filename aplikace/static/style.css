@@ -174,18 +174,20 @@ img {
     border: 1px solid #377ba8; 
 }
 
-input[type=submit] 
-{ 
-    /*align-self: start;*/ 
-    width: 10em; 
+
+
+.info {
+    font-size: 24px;
+    color: #333;
 }
 
+/*
 .content textarea 
 { 
     min-height: 12em; 
     resize: vertical;
 }
-
+*/
 .content input, .content textarea 
 { 
     margin-bottom: 1em; 
@@ -273,6 +275,23 @@ article table tr td
     background-color: rgb(98, 98, 221);
 }
 
+input[type=submit] 
+{ 
+    /*align-self: start;*/ 
+    width: 10em; 
+}
+
+input 
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: whitesmoke;
+}
+
 .dva_sloupce
 {
     display: grid;
@@ -280,8 +299,13 @@ article table tr td
     gap: 1em;
 }
 
+.sloupec_formulare 
+{   
+    display: inline-block; 
+    vertical-align: top; 
+}
 
-.sloupec_formulare
+.sloupec_formulare > *
 {
     display: flex;
     flex-direction: column;
@@ -323,7 +347,7 @@ form div label
 
 .ulozit:hover
 {
-    filter: brightness(140%) contrast(70%);
+    filter: brightness(140%) contrast(60%);
 }
 
 .uzivatel
